@@ -1,4 +1,4 @@
-package main
+package helpers
 
 import (
 	"bufio"
@@ -13,8 +13,8 @@ type Combos struct {
 	Value int
 }
 
-func validateInput() ([]Combos, error) {
-	file, err := os.Open("input.txt")
+func ValidateInput() ([]Combos, error) {
+	file, err := os.Open("./input/aocInput.txt")
 	if err != nil {
 		fmt.Println("Error opening file:", err)
 		return nil, err
@@ -60,8 +60,7 @@ func validateInput() ([]Combos, error) {
 		lineNum++
 	}
 	if err := scanner.Err(); err != nil {
-		fmt.Println("Error reading file:", err)
+		return nil, err
 	}
-	
 	return combos, nil
 }
