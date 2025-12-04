@@ -13,19 +13,19 @@ func Part1() {
 		log.Fatal(err)
 	}
 
-	var totalCount int
-	var maxInputRange int = ranges[len(ranges)-1].EndingValue
-	var possibleCombinations []int
-		for i := 1; i <= maxInputRange/2; i++ {
-			var candidate string = strconv.Itoa(i) + strconv.Itoa(i)
-			val, err := strconv.Atoi(candidate)
-			if err == nil {
-				possibleCombinations = append(possibleCombinations, val)
+	var totalSum int
+	for _, r := range ranges {
+		for id := r.StartingValue; id <= r.EndingValue; id++ {
+			s := strconv.Itoa(id)
+			l := len(s)
+			if l%2 != 0 {
+				continue // must be even length
+			}
+			half := l / 2
+			if s[:half] == s[half:] && s[0] != '0' {
+				totalSum += id
 			}
 		}
-	for _, r := range ranges {
-		
 	}
-	
-	log.Printf("Dec 2, Part 1 - Total Count: %d", totalCount)
+	log.Printf("Dec 2, Part 1 - Total Sum: %d", totalSum)
 }

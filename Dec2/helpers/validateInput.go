@@ -14,7 +14,7 @@ type Ranges struct {
 }
 
 func ValidateInput() ([]Ranges, error) {
-	file, err := os.Open("./input/testInput.txt")
+	file, err := os.Open("./input/aocInput.txt")
 	if err != nil {
 		fmt.Println("Error opening file:", err)
 		return nil, err
@@ -24,22 +24,23 @@ func ValidateInput() ([]Ranges, error) {
 	var ranges []Ranges
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		line := scanner.Text()
+		rangeSets := strings.Split(scanner.Text(), ",")
+		for _, line := range rangeSets {
+			parts := strings.Split(line, "-")
+			start, err := strconv.Atoi(parts[0])
+			if err != nil {
+				return nil, err
+			}
+			end, err := strconv.Atoi(parts[1])
+			if err != nil {
+				return nil, err
+			}
 
-		parts := strings.Split(line, "-")
-		start, err := strconv.Atoi(parts[0])
-		if err != nil {
-			return nil, err
+			ranges = append(ranges, Ranges{
+				StartingValue: start,
+				EndingValue:   end, 
+			})
 		}
-		end, err := strconv.Atoi(parts[1])
-		if err != nil {
-			return nil, err
-		}
-
-		ranges = append(ranges, Ranges{
-			StartingValue: start,
-			EndingValue:   end, 
-		})
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, err
