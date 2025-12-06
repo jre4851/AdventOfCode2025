@@ -24,16 +24,5 @@ func Part1() {
 			}
 		}
 
-		// for _, r := range ranges {
-		// 	for i := r.StartingValue; i <= r.EndingValue; i++ {
-		// 		if helpers.Contains(ingredients, i) {
-		// 			if !helpers.Contains(validIngredients, i) {
-		// 				log.Printf("Ingredient %d found in range %+v", i, r)
-		// 				validIngredients = append(validIngredients, i)
-		// 			}
-		// 		}
-		// 	}
-		// }
-
 		log.Printf("Part 1 Valid Ingredients: %d", len(validIngredients))
 }
