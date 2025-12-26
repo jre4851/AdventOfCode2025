@@ -13,5 +13,17 @@ func Part1() {
 		fmt.Println("Dec 11 - Part 1 - Device Map:")
 		fmt.Println(string(jsonBytes))
 		
-    // log.Println("Part 1 placeholder")
+    paths := CountPaths(deviceMap, "you", "out")
+		fmt.Printf("Number of unique paths from 'you' to 'out': %d\n", paths)
+}
+
+func CountPaths(deviceMap map[string][]string, current, target string) int {
+    if current == target {
+        return 1
+    }
+    count := 0
+    for _, next := range deviceMap[current] {
+        count += CountPaths(deviceMap, next, target)
+    }
+    return count
 }

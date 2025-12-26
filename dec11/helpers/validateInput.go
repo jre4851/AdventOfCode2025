@@ -7,7 +7,7 @@ import (
 )
 
 func ValidateInput() (map[string][]string) {
-    file, _ := os.Open("./input/testInput.txt")
+    file, _ := os.Open("./input/aocInput.txt")
 		defer file.Close()
 
 		deviceMap := make(map[string][]string)
